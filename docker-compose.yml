@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+  libro-service:
+    build: ./libro-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongo
+  autor-service:
+    build: ./autor-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mongo
+  gateway-service:
+    build: ./gateway-service
+    ports:
+      - "8080:8080"
